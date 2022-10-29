@@ -25,7 +25,6 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         float posY = 0f; 
-        Vector2 dir;
         if(other.gameObject.tag == "PaddleLeft"){
             posY = (speed.y - paddleLeft.position.y) / paddleLeft.transform.lossyScale.y;
             speed.x = 10;

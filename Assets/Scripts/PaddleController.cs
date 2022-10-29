@@ -7,10 +7,6 @@ public class PaddleController : MonoBehaviour
 
     [SerializeField]
     private int speed;
-
-    [SerializeField]
-    private Transform camera;
-
     private Rigidbody2D rig;
 
     // Start is called before the first frame update
@@ -30,17 +26,33 @@ public class PaddleController : MonoBehaviour
     private Vector2 GetInput(){
         Vector3 movement = Vector3.zero;
 
-        if(Input.GetKey(KeyCode.W)){
-            movement = Vector3.up * speed;
+        if(gameObject.tag == "PaddleLeft"){
+            if(Input.GetKey(KeyCode.W)){
+                movement = Vector3.up * speed;
+            }
+            if(Input.GetKey(KeyCode.S)){
+                movement = Vector3.down * speed;
+            }
+            if(Input.GetKey(KeyCode.A)){
+                movement = Vector3.left * speed;
+            }
+            if(Input.GetKey(KeyCode.D)){
+                movement = Vector3.right * speed;
+            }
         }
-        if(Input.GetKey(KeyCode.S)){
-            movement = Vector3.down * speed;
-        }
-        if(Input.GetKey(KeyCode.A)){
-            movement = Vector3.left * speed;
-        }
-        if(Input.GetKey(KeyCode.D)){
-            movement = Vector3.right * speed;
+        if(gameObject.tag == "PaddleRight"){
+            if(Input.GetKey(KeyCode.UpArrow)){
+                movement = Vector3.up * speed;
+            }
+            if(Input.GetKey(KeyCode.DownArrow)){
+                movement = Vector3.down * speed;
+            }
+            if(Input.GetKey(KeyCode.LeftArrow)){
+                movement = Vector3.left * speed;
+            }
+            if(Input.GetKey(KeyCode.RightArrow)){
+                movement = Vector3.right * speed;
+            }
         }
 
         return movement;
