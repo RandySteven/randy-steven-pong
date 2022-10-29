@@ -7,29 +7,46 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private Vector2 speed;
 
+    [SerializeField]
+    private Transform paddleLeft, paddleRight;   
+
     private Rigidbody2D rig;
     // Start is called before the first frame update
     void Start()
     {
-        speed = Vector3.zero;
-
         rig = GetComponent<Rigidbody2D>();
-        rig.velocity = speed;
-        float rand = Random.Range(0, 2);
-
-        if(rand < 1){
-            rig.AddForce(new Vector2(20, -15));
-        } else {
-            rig.AddForce(new Vector2(-20, -15));
-        }
+        gameObject.AddComponent<CircleCollider2D>();
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
-        transform.Translate(speed * Time.deltaTime);
+        transform.Translate(speed * Time.deltaTime);        
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        
+        float posY = 0f; 
+        Vector2 dir;
+        if(other.gameObject.tag == "PaddleLeft"){
+            posY = (speed.y - paddleLeft.position.y) / paddleLeft.transform.lossyScale.y;
+            speed.x = 10;
+            speed.y = posY;
+            Debug.Log("X : " + speed.x +" | Y :" + speed.y);
+            gameObject.transform.Translate(speed * Time.deltaTime);
+        }
+        if(other.gameObject.tag == "PaddleRight"){
+            posY = (speed.y - paddleRight.position.y) / paddleRight.transform.lossyScale.y;
+            speed.x = -10;
+            speed.y =posY;
+            Debug.Log("X : " + speed.x +" | Y :" + speed.y);
+            gameObject.transform.Translate(speed * Time.deltaTime);
+            // dir = new Vector2(-1, posY).normalized;
+            // rig.velocity = speed * dir * Time.deltaTime;
+        }
+        if(other.gameObject.tag == "WallUp"){
+            speed.y = -5;
+        }
+        if(other.gameObject.tag == "WallDown"){
+            speed.y = 5;
+        }
     }
 }

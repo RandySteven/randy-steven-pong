@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  camera: {fileID: 519420032}
+  camera: {fileID: 0}
 --- !u!61 &240029897
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 620116696}
   m_Layer: 0
   m_Name: Up
-  m_TagString: Untagged
+  m_TagString: WallUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -735,7 +735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbe9ba8e786eb14a9eda16de81ff579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0}
+  speed: {x: 10, y: -1}
+  paddleLeft: {fileID: 666551426}
+  paddleRight: {fileID: 240029894}
 --- !u!50 &904421903
 Rigidbody2D:
   serializedVersion: 4
@@ -751,7 +753,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 3f605de6b3309dc46a4332695807569d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1039,7 +1041,7 @@ GameObject:
   - component: {fileID: 1815752965}
   m_Layer: 0
   m_Name: Down
-  m_TagString: Untagged
+  m_TagString: WallDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
