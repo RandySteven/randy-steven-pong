@@ -73,4 +73,13 @@ public class PaddleController : MonoBehaviour
     private void MoveObject(Vector2 movement){
         transform.Translate(movement * Time.deltaTime);
     }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "WallUp"){
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x, other.gameObject.transform.lossyScale.y);
+        }
+        if(other.gameObject.tag == "WallDown"){
+
+        }
+    }
 }
